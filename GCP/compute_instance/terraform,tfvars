@@ -1,0 +1,11 @@
+name = "testbox-1"
+
+zone = [""]
+
+machine_type = ""
+
+image = ""
+
+size = 30 
+
+type = ""
