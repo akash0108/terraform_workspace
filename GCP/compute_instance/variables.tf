@@ -27,3 +27,9 @@ variable "type" {
       description = "Type of disk"
       type        = string
 }
+
+variable "project_id" {
+      description = "This is the project ID"
+      type =  string
+}
+

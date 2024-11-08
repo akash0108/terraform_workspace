@@ -4,6 +4,7 @@ module "test-instance" {
       name             = var.name
       zone             = var.zone
       machine_type     = var.machine_type
+      project          = var.project_id
 
       image_id = var.image_id
       size = var.size
