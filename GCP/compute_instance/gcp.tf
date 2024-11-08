@@ -1,15 +1,12 @@
 terraform {
-
-    credentials = sa-key.json
-  
+    #credentials = sa-key.json
 }
 
-provider "google" {      
-      #credentials = sa-key.json
-
+provider "google" {
+      credentials = file("sa-key.json")
+      project = "learn-dev-436914"
 }
 
-provider "google-beta" {      
-      #credentials = sa-key.json
-
-}
+#provider "google-beta" {
+#      credentials ="${file(sa-key.json)}"
+#}

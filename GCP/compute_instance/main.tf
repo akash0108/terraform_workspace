@@ -5,8 +5,8 @@ module "test-instance" {
       zone             = var.zone
       machine_type     = var.machine_type
 
-      image = var.image_id
+      image_id = var.image_id
       size = var.size
-      type =  var.type 
-      
+      type =  var.type
+
 }

@@ -1,21 +1,21 @@
 variable "name" {
       description = "Compute instance Name"
-      type        = string      
+      type        = string
 }
 
 variable "zone" {
       description = "list of zones"
-      type = list
+      type = string
 }
 
 variable "machine_type" {
       description = "Compute instance machine type"
-      type = string 
+      type = string
 }
 
 variable "image_id" {
       description = "Compute instance image"
-      type        = string 
+      type        = string
 }
 
 variable "size" {
