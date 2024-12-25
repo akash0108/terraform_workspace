@@ -1,0 +1,38 @@
+//define shared library
+@Library('Jenkins-shared@feature/tf') _
+
+//start of npipeline
+pipeline{
+      agent any
+
+      environment {
+        GOOGLE_APPLICATION_CREDENTIALS = ''
+      }
+
+      stages{
+        stage('Configure'){
+          steps{
+            withCredentials([file(credentialsId: 'gcp-dev-sa', variable: 'SERVICE_ACCOUNT_KEY')]) {
+              script {
+                // Set the environment variable for Terraform
+                env.GOOGLE_APPLICATION_CREDENTIALS = SERVICE_ACCOUNT_KEY
+                echo "Service account key configured for authentication."
+                gcloud auth activate-service-account --key-file=$GOOGLE_APPLICATION_CREDENTIALS
+                gcloud config set project learn-dev-436914
+                
+              }
+            }
+          }
+        }
+      }
+
+      stage('Init') {
+        steps {
+          script {
+            terraform.init(terraformDir: 'GCP/compute_instance')
+          }
+        }
+      }
+
+
+}
