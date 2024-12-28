@@ -26,13 +26,22 @@ pipeline{
         }
 
         stage('Init') {
-        steps {
-          script {
-            terraform.init(terraformDir: 'GCP/compute_instance')
+          steps {
+            script {
+              terraform.init(terraformDir: 'GCP/compute_instance')
+            }
           }
         }
-      }
+
+        stage('Plan') {
+            steps {
+                script {
+                    terraform.plan(terraformDir: 'GCP/compute_instance')
+                }
+            }
+        }
+
+
+
     }
-
-
 }
