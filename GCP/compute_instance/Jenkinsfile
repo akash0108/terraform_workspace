@@ -24,15 +24,15 @@ pipeline{
             }
           }
         }
-      }
 
-      stage('Init') {
+        stage('Init') {
         steps {
           script {
             terraform.init(terraformDir: 'GCP/compute_instance')
           }
         }
       }
+    }
 
 
 }
