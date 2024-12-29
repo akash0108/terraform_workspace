@@ -15,7 +15,8 @@ pipeline{
             withCredentials([file(credentialsId: 'SA_AUTH',variable: 'SERVICE_ACCOUNT_KEY')]) {
               
               sh 'env.GOOGLE_APPLICATION_CREDENTIALS=${SERVICE_ACCOUNT_KEY}'
-              println("The google authenicate" + env.GOOGLE_APPLICATION_CREDENTIALS )
+              println(${SERVICE_ACCOUNT_KEY})
+              println("The google authenicate" + ${env.GOOGLE_APPLICATION_CREDENTIALS} )
             
             }
           }
