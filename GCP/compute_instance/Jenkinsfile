@@ -12,7 +12,7 @@ pipeline{
       stages{
         stage('Configure'){
           steps{
-            withCredentials([file(credentialsId: 'gcp-dev-sa', variable: 'SERVICE_ACCOUNT_KEY')]) {
+            withCredentials([file(credentialsId: 'SA_AUTH', variable: 'SERVICE_ACCOUNT_KEY')]) {
               script {
                 // Set the environment variable for Terraform
                 echo "print the Json" $SERVICE_ACCOUNT_KEY
