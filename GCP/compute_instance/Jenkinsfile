@@ -17,7 +17,10 @@ pipeline{
               println("${SERVICE_ACCOUNT_KEY}") 
               script{
                 env.GOOGLE_APPLICATION_CREDENTIALS=${SERVICE_ACCOUNT_KEY}
-                println(env.GOOGLE_APPLICATION_CREDENTIALS) 
+                echo "Service account key configured: ${env.GOOGLE_APPLICATION_CREDENTIALS}"
+                        
+                // Check if the file exists
+                sh 'ls -l $GOOGLE_APPLICATION_CREDENTIALS'
               }           
             }
           }
