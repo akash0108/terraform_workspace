@@ -18,7 +18,8 @@ pipeline{
                 env.GOOGLE_APPLICATION_CREDENTIALS = SERVICE_ACCOUNT_KEY
                 echo "Service account key configured for authentication."
                 echo "####################"
-                echo ${env.GOOGLE_APPLICATION_CREDENTIALS}
+                // echo ${env.GOOGLE_APPLICATION_CREDENTIALS}
+                echo "Service account key configured: ${env.GOOGLE_APPLICATION_CREDENTIALS}"
                 echo "############################"
                 // gcloud auth activate-service-account --key-file=$GOOGLE_APPLICATION_CREDENTIALS
                 // gcloud config set project learn-dev-436914
