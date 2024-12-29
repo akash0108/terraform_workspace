@@ -14,7 +14,7 @@ pipeline{
           steps{
             withCredentials([file(credentialsId: 'SA_AUTH', variable: 'SERVICE_ACCOUNT_KEY')]) {
               // echo "print the Json" $SERVICE_ACCOUNT_KEY
-              env.GOOGLE_APPLICATION_CREDENTIALS = SERVICE_ACCOUNT_KEY
+              sh "env.GOOGLE_APPLICATION_CREDENTIALS = SERVICE_ACCOUNT_KEY"
               echo "Service account key configured for authentication."
     
               //env.GOOGLE_APPLICATION_CREDENTIALS = SERVICE_ACCOUNT_KEY
