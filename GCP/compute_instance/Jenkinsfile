@@ -14,8 +14,10 @@ pipeline{
           steps{
             withCredentials([file(credentialsId: 'SA_AUTH', passVariable: 'SERVICE_ACCOUNT_KEY')]) {
               
-              echo "print the Json" $SERVICE_ACCOUNT_KEY
+              // echo "print the Json" $SERVICE_ACCOUNT_KEY
               sh "gcloud auth activate-service-account --key-file=SERVICE_ACCOUNT_KEY"
+              sh "gcloud config set project learn-dev-436914"
+            
               // sh "env.GOOGLE_APPLICATION_CREDENTIALS = SERVICE_ACCOUNT_KEY"
               // echo "Service account key configured for authentication."
     
