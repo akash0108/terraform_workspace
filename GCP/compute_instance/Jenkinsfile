@@ -13,19 +13,24 @@ pipeline{
         stage('Configure'){
           steps{
             withCredentials([file(credentialsId: 'SA_AUTH', variable: 'SERVICE_ACCOUNT_KEY')]) {
-              script {
-                // Set the environment variable for Terraform
-                echo "print the Json" $SERVICE_ACCOUNT_KEY
-                env.GOOGLE_APPLICATION_CREDENTIALS = SERVICE_ACCOUNT_KEY
-                echo "Service account key configured for authentication."
-                echo "####################"
-                // echo ${env.GOOGLE_APPLICATION_CREDENTIALS}
-                echo "Service account key configured: ${env.GOOGLE_APPLICATION_CREDENTIALS}"
-                echo "############################"
-                // gcloud auth activate-service-account --key-file=$GOOGLE_APPLICATION_CREDENTIALS
-                // gcloud config set project learn-dev-436914
+              // echo "print the Json" $SERVICE_ACCOUNT_KEY
+              env.GOOGLE_APPLICATION_CREDENTIALS = SERVICE_ACCOUNT_KEY
+              echo "Service account key configured for authentication."
+    
+              //env.GOOGLE_APPLICATION_CREDENTIALS = SERVICE_ACCOUNT_KEY
+              // script {
+              //   // Set the environment variable for Terraform
+              //   echo "print the Json" $SERVICE_ACCOUNT_KEY
+              //   env.GOOGLE_APPLICATION_CREDENTIALS = SERVICE_ACCOUNT_KEY
+              //   echo "Service account key configured for authentication."
+              //   echo "####################"
+              //   // echo ${env.GOOGLE_APPLICATION_CREDENTIALS}
+              //   echo "Service account key configured: ${env.GOOGLE_APPLICATION_CREDENTIALS}"
+              //   echo "############################"
+              //   // gcloud auth activate-service-account --key-file=$GOOGLE_APPLICATION_CREDENTIALS
+              //   // gcloud config set project learn-dev-436914
                 
-              }
+              // }
             }
           }
         }
