@@ -15,6 +15,7 @@ pipeline{
             withCredentials([file(credentialsId: 'gcp-dev-sa', variable: 'SERVICE_ACCOUNT_KEY')]) {
               script {
                 // Set the environment variable for Terraform
+                echo "print the Json" $SERVICE_ACCOUNT_KEY
                 env.GOOGLE_APPLICATION_CREDENTIALS = SERVICE_ACCOUNT_KEY
                 echo "Service account key configured for authentication."
                 echo "####################"
