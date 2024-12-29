@@ -14,13 +14,12 @@ pipeline{
           steps{
             withCredentials([file(credentialsId: 'SA_AUTH',variable: 'SERVICE_ACCOUNT_KEY')]) {
               
-              println("${SERVICE_ACCOUNT_KEY}") 
-              script{
-                env.GOOGLE_APPLICATION_CREDENTIALS=${SERVICE_ACCOUNT_KEY}
-                        
-                // Check if the file exists
-                sh 'ls -l $GOOGLE_APPLICATION_CREDENTIALS'
-              }           
+              println("${SERVICE_ACCOUNT_KEY}")
+              sh '''
+                    gcloud auth activate-service-account --key-file=${SERVICE_ACCOUNT_KEY}
+                    gcloud config set project YOUR_PROJECT_ID
+                    gcloud compute instances list
+                    '''            
             }
           }
         }
