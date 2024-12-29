@@ -14,7 +14,7 @@ pipeline{
           steps{
             withCredentials([file(credentialsId: 'SA_AUTH', passVariable: 'SERVICE_ACCOUNT_KEY')]) {
               
-              sh "gcloud config set project learn-dev-436914  
+              sh "gcloud config set project learn-dev-436914" 
             
             }
           }
