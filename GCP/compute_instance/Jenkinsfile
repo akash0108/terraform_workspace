@@ -17,6 +17,9 @@ pipeline{
                 // Set the environment variable for Terraform
                 env.GOOGLE_APPLICATION_CREDENTIALS = SERVICE_ACCOUNT_KEY
                 echo "Service account key configured for authentication."
+                echo "####################"
+                echo $GOOGLE_APPLICATION_CREDENTIALS
+                echo "############################"
                 // gcloud auth activate-service-account --key-file=$GOOGLE_APPLICATION_CREDENTIALS
                 // gcloud config set project learn-dev-436914
                 
