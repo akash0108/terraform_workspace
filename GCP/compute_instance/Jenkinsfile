@@ -17,7 +17,7 @@ pipeline{
               println("${SERVICE_ACCOUNT_KEY}") 
               script{
                 env.GOOGLE_APPLICATION_CREDENTIALS=${SERVICE_ACCOUNT_KEY}
-                echo env.GOOGLE_APPLICATION_CREDENTIALS 
+                println(env.GOOGLE_APPLICATION_CREDENTIALS) 
               }           
             }
           }
