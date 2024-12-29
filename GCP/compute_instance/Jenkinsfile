@@ -17,7 +17,7 @@ pipeline{
               println("${SERVICE_ACCOUNT_KEY}")
               sh '''
                     gcloud auth activate-service-account --key-file=${SERVICE_ACCOUNT_KEY}
-                    gcloud config set project YOUR_PROJECT_ID
+                    gcloud config set project learn-dev-436914
                     gcloud compute instances list
                     '''            
             }
