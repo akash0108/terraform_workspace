@@ -40,7 +40,6 @@ pipeline{
                     terraform.plan(terraformDir: 'GCP/compute_instance')
                 }
               }
-
             }
         }
 
