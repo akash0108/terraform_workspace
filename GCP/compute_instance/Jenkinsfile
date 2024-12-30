@@ -14,7 +14,7 @@ pipeline{
           steps{
             withCredentials([file(credentialsId: 'SA_AUTH',variable: 'SERVICE_ACCOUNT_KEY')]) {
               
-              println("${SERVICE_ACCOUNT_KEY}")
+              // println("${SERVICE_ACCOUNT_KEY}")
               // sh '''
               //       export GOOGLE_APPLICATION_CREDENTIALS=${SERVICE_ACCOUNT_KEY}
               //       gcloud auth activate-service-account --key-file=${SERVICE_ACCOUNT_KEY}
@@ -35,11 +35,14 @@ pipeline{
 
         stage('Plan') {
             steps {
-              withCredentials([file(credentialsId: 'SA_AUTH',variable: 'SERVICE_ACCOUNT_KEY')]) {
-                script {
+              // withCredentials([file(credentialsId: 'SA_AUTH',variable: 'SERVICE_ACCOUNT_KEY')]) {
+              //   script {
+              //       terraform.plan(terraformDir: 'GCP/compute_instance')
+              //   }
+              // }
+              script {
                     terraform.plan(terraformDir: 'GCP/compute_instance')
-                }
-              }
+                 }
             }
         }
 
