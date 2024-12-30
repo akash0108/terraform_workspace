@@ -6,7 +6,7 @@ pipeline{
       agent any
 
       environment {
-        GOOGLE_APPLICATION_CREDENTIALS = ''
+        GOOGLE_APPLICATION_CREDENTIALS = credentials('SA_AUTH')
       }
 
       stages{
@@ -15,11 +15,12 @@ pipeline{
             withCredentials([file(credentialsId: 'SA_AUTH',variable: 'SERVICE_ACCOUNT_KEY')]) {
               
               println("${SERVICE_ACCOUNT_KEY}")
-              sh '''
-                    export GOOGLE_APPLICATION_CREDENTIALS=${SERVICE_ACCOUNT_KEY}
-                    gcloud config set project learn-dev-436914
-                    gcloud compute instances list
-                    '''            
+              // sh '''
+              //       export GOOGLE_APPLICATION_CREDENTIALS=${SERVICE_ACCOUNT_KEY}
+              //       gcloud auth activate-service-account --key-file=${SERVICE_ACCOUNT_KEY}
+              //       gcloud config set project learn-dev-436914
+              //       gcloud compute instances list
+              //       '''            
             }
           }
         }
@@ -34,9 +35,12 @@ pipeline{
 
         stage('Plan') {
             steps {
+              withCredentials([file(credentialsId: 'SA_AUTH',variable: 'SERVICE_ACCOUNT_KEY')]) {
                 script {
                     terraform.plan(terraformDir: 'GCP/compute_instance')
                 }
+              }
+
             }
         }
 
