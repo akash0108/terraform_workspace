@@ -53,6 +53,14 @@ pipeline{
             }
           }
         }
+
+        stage('Destroy') {
+          steps {
+            script {
+              terraform.apply(terraformDir: 'GCP/compute_instance')
+            }
+          }
+        }
     }
     post {
         always {
