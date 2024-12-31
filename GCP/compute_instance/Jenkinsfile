@@ -45,6 +45,14 @@ pipeline{
                  }
             }
         }
+        
+        stage('Apply') {
+          steps {
+            script {
+              terraform.apply(terraformDir: 'GCP/compute_instance')
+            }
+          }
+        }
     }
     post {
         always {
