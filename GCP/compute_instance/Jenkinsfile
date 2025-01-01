@@ -32,7 +32,12 @@ pipeline{
         stage('Init') {
           steps {
             script {
-              terraform.init(terraformDir: 'GCP/compute_instance')
+              if(params.Terraform == 'apply' || params.Terraform == 'destroy'){
+                terraform.init(terraformDir: 'GCP/compute_instance')                  
+              }
+              else{
+                println("terraform action choosed ${params.Terraform}")
+              }
             }
           }
         }
@@ -45,7 +50,7 @@ pipeline{
               //   }
               // }
               script {
-                if(params.Terraform == 'apply'){
+                if(params.Terraform == 'apply' || params.Terraform == 'destroy'  ){
                   terraform.plan(terraformDir: 'GCP/compute_instance')
                 }
                 else{
