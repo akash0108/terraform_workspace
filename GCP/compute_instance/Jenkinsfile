@@ -49,7 +49,7 @@ pipeline{
                   terraform.plan(terraformDir: 'GCP/compute_instance')
                 }
                 else{
-                  println("terraform action choosed ${params,Terraform}")
+                  println("terraform action choosed ${params.Terraform}")
                 }
                     
               }
