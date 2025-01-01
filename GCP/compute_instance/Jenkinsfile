@@ -1,7 +1,7 @@
 //define shared library
 @Library('Jenkins-shared@feature/tf') _
 
-//start of npipeline
+//start of pipeline
 pipeline{
       agent any
 
@@ -18,13 +18,7 @@ pipeline{
           steps{
             withCredentials([file(credentialsId: 'SA_AUTH',variable: 'SERVICE_ACCOUNT_KEY')]) {
               
-              // println("${SERVICE_ACCOUNT_KEY}")
-              // sh '''
-              //       export GOOGLE_APPLICATION_CREDENTIALS=${SERVICE_ACCOUNT_KEY}
-              //       gcloud auth activate-service-account --key-file=${SERVICE_ACCOUNT_KEY}
-              //       gcloud config set project learn-dev-436914
-              //       gcloud compute instances list
-              //       '''            
+             println("Configure the Pipeline")           
             }
           }
         }
