@@ -5,6 +5,10 @@
 pipeline{
       agent any
 
+      parameters {
+        choice(name: 'Terraform', choices: ['skip', 'apply', 'destroy'], description: 'Choose the Terraform Action')
+      }
+
       environment {
         GOOGLE_APPLICATION_CREDENTIALS = credentials('SA_AUTH')
       }
