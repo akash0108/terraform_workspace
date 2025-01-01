@@ -63,7 +63,7 @@ pipeline{
                 terraform.apply(terraformDir: 'GCP/compute_instance')                  
               }
               else{
-                println("terraform action choosed ${params,Terraform}")
+                println("terraform action choosed ${params.Terraform}")
               }
             }
           }
@@ -76,7 +76,7 @@ pipeline{
                 terraform.destroy(terraformDir: 'GCP/compute_instance')                                  
               }
               else{
-                println("terraform action choosed ${params,Terraform}")
+                println("terraform action choosed ${params.Terraform}")
               }
             }
           }
