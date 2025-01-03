@@ -1,88 +1,88 @@
 //define shared library
 @Library('Jenkins-shared@feature/tf') _
 
-terraform(
-  terraformDir: 'GCP/compute_instance'
-)
+// terraform(
+//   terraformDir: 'GCP/compute_instance'
+// )
 
 //start of pipeline
-// pipeline{
-//       agent any
+pipeline{
+      agent any
 
-//       parameters {
-//         choice(name: 'Terraform', choices: ['skip', 'apply', 'destroy'], description: 'Choose the Terraform Action')
-//       }
+      parameters {
+        choice(name: 'Terraform', choices: ['skip', 'apply', 'destroy'], description: 'Choose the Terraform Action')
+      }
 
-//       environment {
-//         GOOGLE_APPLICATION_CREDENTIALS = credentials('SA_AUTH')
-//       }
+      environment {
+        GOOGLE_APPLICATION_CREDENTIALS = credentials('SA_AUTH')
+      }
 
-//       stages{
-//         stage('Configure'){
-//           steps{
-//             withCredentials([file(credentialsId: 'SA_AUTH',variable: 'SERVICE_ACCOUNT_KEY')]) {
+      stages{
+        stage('Configure'){
+          steps{
+            withCredentials([file(credentialsId: 'SA_AUTH',variable: 'SERVICE_ACCOUNT_KEY')]) {
               
-//              println("Configure the Pipeline")           
-//             }
-//           }
-//         }
+             println("Configure the Pipeline")           
+            }
+          }
+        }
 
-//         stage('Init') {
-//           steps {
-//             script {
-//               if(params.Terraform == 'apply' || params.Terraform == 'destroy'){
-//                 terraform.init(terraformDir: 'GCP/compute_instance')                  
-//               }
-//               else{
-//                 println("terraform action choosed ${params.Terraform}")
-//               }
-//             }
-//           }
-//         }
+        stage('Init') {
+          steps {
+            script {
+              if(params.Terraform == 'apply' || params.Terraform == 'destroy'){
+                terraform.init(terraformDir: 'GCP/compute_instance')                  
+              }
+              else{
+                println("terraform action choosed ${params.Terraform}")
+              }
+            }
+          }
+        }
 
-//         stage('Plan') {
-//             steps {
-//               script {
-//                 if(params.Terraform == 'apply' || params.Terraform == 'destroy'  ){
-//                   terraform.plan(terraformDir: 'GCP/compute_instance')
-//                 }
-//                 else{
-//                   println("terraform action choosed ${params.Terraform}")
-//                 }
+        stage('Plan') {
+            steps {
+              script {
+                if(params.Terraform == 'apply' || params.Terraform == 'destroy'  ){
+                  terraform.plan(terraformDir: 'GCP/compute_instance')
+                }
+                else{
+                  println("terraform action choosed ${params.Terraform}")
+                }
                     
-//               }
-//             }
-//         }
+              }
+            }
+        }
         
-//         stage('Apply') {
-//           steps {
-//             script {
-//               if(params.Terraform == 'apply'){
-//                 terraform.apply(terraformDir: 'GCP/compute_instance')                  
-//               }
-//               else{
-//                 println("terraform action choosed ${params.Terraform}")
-//               }
-//             }
-//           }
-//         }
+        stage('Apply') {
+          steps {
+            script {
+              if(params.Terraform == 'apply'){
+                terraform.apply(terraformDir: 'GCP/compute_instance')                  
+              }
+              else{
+                println("terraform action choosed ${params.Terraform}")
+              }
+            }
+          }
+        }
 
-//         stage('Destroy') {
-//           steps {
-//             script {
-//               if(params.Terraform == 'destroy'){
-//                 terraform.destroy(terraformDir: 'GCP/compute_instance')                                  
-//               }
-//               else{
-//                 println("terraform action choosed ${params.Terraform}")
-//               }
-//             }
-//           }
-//         }
-//     }
-//     post {
-//         always {
-//             deleteDir()
-//         }
-//     }
-// }
+        stage('Destroy') {
+          steps {
+            script {
+              if(params.Terraform == 'destroy'){
+                terraform.destroy(terraformDir: 'GCP/compute_instance')                                  
+              }
+              else{
+                println("terraform action choosed ${params.Terraform}")
+              }
+            }
+          }
+        }
+    }
+    post {
+        always {
+            deleteDir()
+        }
+    }
+}-
