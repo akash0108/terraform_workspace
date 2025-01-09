@@ -14,7 +14,7 @@
 
 iacPipeline(
   tfDir : 'GCP/compute_instance',
-  secretkey : SA_AUTH 
+  secretkey : 'SA_AUTH' 
 )
 
 //start of pipeline
