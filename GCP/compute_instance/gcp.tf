@@ -3,7 +3,7 @@ terraform {
 }
 
 provider "google" {
-      #credentials = file("sa-key.json")
+      credentials = file("/tmp/sa-key.json")
       project = "learn-dev-436914"
 }
 
